@@ -23,11 +23,11 @@ export const ReceiveMessage = (req, res) => {
         const changes = entry['changes'][0];
         const value = changes['value'];
         const messages = value['messages'];
-        myConsole.log(messages);
+        console.log(JSON.stringify(messages, null, 2));
         
         res.send("event received");
     } catch (error) {
-        myConsole.log(error);
+        console.log(error);
         
         res.send("event doesnt received");
     }

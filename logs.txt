@@ -1,0 +1,48 @@
+[2026-05-06T18:14:08.492Z] {
+  "type": "messages",
+  "data": [
+    {
+      "from": "51123456789",
+      "id": "wamid.HBgLNTE5NDM2NjI5NjQVAgASGBQzQUNCODUzN0U1QkU5MkZENTFBQwA=",
+      "Timestamp": "1660362642",
+      "type": "text",
+      "text": {
+        "body": "hola Estimado Usuario..."
+      },
+      "interactive": null,
+      "image": null,
+      "audio": null,
+      "video": null,
+      "document": null,
+      "sticker": null,
+      "location": null,
+      "contacts": null,
+      "system": null
+    }
+  ]
+}
+
+[2026-05-06T18:14:42.264Z] {
+  "type": "messages",
+  "data": [
+    {
+      "from": "51123456789",
+      "id": "wamid.HBgLNTE5NDM2NjI5NjQVAgASGBQzQUNCODUzN0U1QkU5MkZENTFBQwA=",
+      "Timestamp": "1660362642",
+      "type": "text",
+      "text": {
+        "body": "hola Estimado Usuario como esta..."
+      },
+      "interactive": null,
+      "image": null,
+      "audio": null,
+      "video": null,
+      "document": null,
+      "sticker": null,
+      "location": null,
+      "contacts": null,
+      "system": null
+    }
+  ]
+}
+

@@ -1,5 +1,5 @@
-import fs from 'fs';
-const myConsole = new console.Console(fs.createWriteStream('./logs.txt'));
+
+import { logToFile, readLogs } from '../utils/logger.js';
 
 export const VerifiToken = (req, res) => {
     //res.send('Token verified successfully!');
@@ -17,18 +17,48 @@ export const VerifiToken = (req, res) => {
     }
 }
 
+
 export const ReceiveMessage = (req, res) => {
     try {
-        const entry = req.body['entry'][0];
-        const changes = entry['changes'][0];
-        const value = changes['value'];
-        const messages = value['messages'];
-        console.log(JSON.stringify(messages, null, 2));
-        
-        res.send("event received");
+        const body = req.body;
+
+        // Validación segura (anti-crash)
+        const value = body?.entry?.[0]?.changes?.[0]?.value;
+
+        if (!value) {
+            logToFile({ error: "Invalid body", body });
+            return res.send("no data");
+        }
+
+        // Puede venir messages o statuses
+        if (value.messages) {
+            logToFile({ type: "messages", data: value.messages });
+        } else {
+            logToFile({ type: "other_event", data: value });
+        }
+
+        res.status(200).send("event received");
+
     } catch (error) {
-        console.log(error);
-        
-        res.send("event doesnt received");
+        logToFile({ error: error.message });
+        res.status(500).send("event doesnt received");
     }
-}
+};
+
+
+// Endpoint para ver logs
+export const GetLogs = (req, res) => {
+    try {
+        const logs = readLogs();
+
+        if (!logs) {
+            return res.send("No logs");
+        }
+
+        res.setHeader('Content-Type', 'text/plain');
+        res.send(logs);
+
+    } catch (error) {
+        res.status(500).send("Error reading logs");
+    }
+};

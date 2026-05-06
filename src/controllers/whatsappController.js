@@ -1,3 +1,6 @@
+import fs from 'fs';
+const myConsole = new console.Console(fs.createWriteStream('./logs.txt'));
+
 export const VerifiToken = (req, res) => {
     //res.send('Token verified successfully!');
     try {
@@ -15,5 +18,17 @@ export const VerifiToken = (req, res) => {
 }
 
 export const ReceiveMessage = (req, res) => {
-    res.send('Message received successfully!');
+    try {
+        const entry = req.body['entry'][0];
+        const changes = entry['changes'][0];
+        const value = changes['value'];
+        const messages = value['messages'];
+        myConsole.log(messages);
+        
+        res.send("event received");
+    } catch (error) {
+        myConsole.log(error);
+        
+        res.send("event doesnt received");
+    }
 }

@@ -1,5 +1,5 @@
 import { SendMessageWhatsapp } from "../services/whatsappService.js";
-import { sampleText } from "../utils/sampleModels.js";
+import { sampleButtons, sampleDocument, sampleImage, sampleLink, sampleList, sampleLocation, sampleText } from "../utils/sampleModels.js";
 
 export const VerifiToken = (req, res) => {
 
@@ -58,11 +58,10 @@ export const ReceiveMessage = (req, res) => {
                     const dataLocation = sampleLocation(phoneNumber);
                     SendMessageWhatsapp(dataLocation);
                     break;
-                case "text":
+                default:
                     const dataAnotherText = sampleText("No entiendo el mensaje", phoneNumber);
                     SendMessageWhatsapp(dataAnotherText);
                     break;
-                default:
                     break;
             }
         }
@@ -88,7 +87,8 @@ function GetTextMessage(messages) {
 
         const interactiveObject = messages["interactive"];
         const interactiveType = interactiveObject["type"];
-
+        console.log(interactiveType);
+        
         if(interactiveType === "button_reply"){
             text = interactiveObject["button_reply"]["title"];
         }

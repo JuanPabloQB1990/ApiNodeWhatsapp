@@ -21,9 +21,14 @@ export const ReceiveMessage = (req, res) => {
         const changes = entry['changes'][0];
         const value = changes['value'];
         const messageObject = value['messages'];
-        const messages = messageObject[0];
-        const text = GetTextMessage(messages);
-        console.log(JSON.stringify(text, null, 2));
+
+        if(typeof messageObject != "undefined") {
+            const messages = messageObject[0];
+            const text = GetTextMessage(messages);
+            console.log(JSON.stringify(text, null, 2));
+
+        }
+
         
         res.send("event received");
     } catch (error) {

@@ -32,7 +32,7 @@ export const ReceiveMessage = (req, res) => {
             switch (text) {
                 case "text":
                     const dataText = sampleText(text, phoneNumber);
-                    SendMessageWhatsapp(data);
+                    SendMessageWhatsapp(dataText);
                     break;
                 case "image":
                     const dataImage = sampleImage(phoneNumber);

@@ -1,19 +1,8 @@
-
 import { config } from "dotenv";
+import { sampleText } from "../utils/sampleModels.js";
 config();
 
-export async function SendMessageWhatsapp(textResponse, numberPhone) {
-    const data = JSON.stringify({ 
-        "messaging_product": "whatsapp", 
-        "preview_url": false,
-        "recipient_type": "individual",
-        "to": numberPhone, 
-        "type": "text", 
-        "text": 
-            { 
-                "body": textResponse
-            } 
-        })
+export async function SendMessageWhatsapp(data) {
 
     const options = {
         hostname: 'graph.facebook.com',

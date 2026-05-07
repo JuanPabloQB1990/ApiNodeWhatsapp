@@ -1,4 +1,5 @@
 import { SendMessageWhatsapp } from "../services/whatsappService.js";
+import { sampleText } from "../utils/sampleModels.js";
 
 export const VerifiToken = (req, res) => {
 
@@ -18,7 +19,7 @@ export const VerifiToken = (req, res) => {
 
 export const ReceiveMessage = (req, res) => {
     try {
-       
+        
         const entry = req.body['entry'][0];
         const changes = entry['changes'][0];
         const value = changes['value'];
@@ -26,9 +27,44 @@ export const ReceiveMessage = (req, res) => {
 
         if(typeof messageObject != "undefined") {
             const messages = messageObject[0];
+            const phoneNumber = messages["from"];
             const text = GetTextMessage(messages);
-            console.log(JSON.stringify(text, null, 2));
-            SendMessageWhatsapp(`El usuario envió: ${text}`, messages["from"]);
+            switch (text) {
+                case "text":
+                    const dataText = sampleText(text, phoneNumber);
+                    SendMessageWhatsapp(data);
+                    break;
+                case "image":
+                    const dataImage = sampleImage(phoneNumber);
+                    SendMessageWhatsapp(dataImage);
+                    break;
+                case "link":
+                    const dataLink = sampleLink(phoneNumber);
+                    SendMessageWhatsapp(dataLink);
+                    break;
+                case "document":
+                    const dataDocument = sampleDocument(phoneNumber);
+                    SendMessageWhatsapp(dataDocument);
+                    break;
+                case "button":
+                    const dataButtons = sampleButtons(phoneNumber);
+                    SendMessageWhatsapp(dataButtons);
+                    break;
+                case "list":
+                    const dataList = sampleList(phoneNumber);
+                    SendMessageWhatsapp(dataList);
+                    break;
+                case "location":
+                    const dataLocation = sampleLocation(phoneNumber);
+                    SendMessageWhatsapp(dataLocation);
+                    break;
+                case "text":
+                    const dataAnotherText = sampleText("No entiendo el mensaje", phoneNumber);
+                    SendMessageWhatsapp(dataAnotherText);
+                    break;
+                default:
+                    break;
+            }
         }
 
         

@@ -1,9 +1,8 @@
 import express from 'express';
-import fs from 'fs';
+import { VerifiToken, ReceiveMessage } from '../controllers/whatsappController.js';
 
 const route = express.Router();
 
-import { VerifiToken, ReceiveMessage } from '../controllers/whatsappController.js';
 
 route.get('/', VerifiToken);
 route.post('/', ReceiveMessage);

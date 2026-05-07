@@ -41,18 +41,40 @@ export function sampleLink(numberPhone) {
   return data;
 }
 
-export function sampleDocument(numberPhone) {
-  const data = JSON.stringify({
-    messaging_product: "whatsapp",
-    to: numberPhone,
-    type: "document",
-    document: {
-      link: "../assets/TALLER 1A USUARIO ADMINISTRADOR.pdf",
-      caption: "Guia AWS",
-    },
-  });
+function SampleAudio(numberPhone){
+    const data = JSON.stringify({
+        "messaging_product": "whatsapp",
+        "to": numberPhone,
+        "type": "audio",  
+        "audio": {
+            "link": "https://file-examples.com/storage/fe7d3a0d44631509da1f416/2017/11/file_example_MP3_700KB.mp3"
+        }        
+    });
+    return data;
+}
 
-  return data;
+function SampleVideo(numberPhone){
+    const data = JSON.stringify({
+        "messaging_product": "whatsapp",
+        "to": numberPhone,
+        "type": "video",  
+        "video": {
+            "link": "https://file-examples.com/storage/fe7d3a0d44631509da1f416/2017/04/file_example_MP4_480_1_5MG.mp4"
+        }        
+    });
+    return data;
+}
+
+function SampleDocument(numberPhone){
+    const data = JSON.stringify({
+        "messaging_product": "whatsapp",
+        "to": numberPhone,
+        "type": "document",  
+        "document": {
+            "link": "https://icseindia.org/document/sample.pdf"
+        }        
+    });
+    return data;
 }
 
 export function sampleButtons(numberPhone) {
@@ -107,7 +129,7 @@ export function sampleList(numberPhone) {
         text: "Tengo estas opciones para ti",
       },
       footer: {
-        text: "Selecciona una de estas opciones para atenderte mejor",
+        text: "Selecciona una de estas opciones",
       },
       action: {
         button: "ver opciones",
@@ -118,7 +140,7 @@ export function sampleList(numberPhone) {
               {
                 id: "main-comprar",
                 title: "Comprar",
-                description: "Compra los mejores productos digitales del mercado",
+                description: "Compra los mejores productos",
               },
             ],
           },
@@ -128,7 +150,7 @@ export function sampleList(numberPhone) {
               {
                 id: "main-vender",
                 title: "Vender",
-                description: "Vende tus productos digitales de forma sencilla y segura",
+                description: "Vende tus productos digitales",
               },
             ],
           },

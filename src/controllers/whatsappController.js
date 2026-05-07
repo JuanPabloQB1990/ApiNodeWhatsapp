@@ -46,6 +46,14 @@ export const ReceiveMessage = (req, res) => {
                     const dataDocument = sampleDocument(phoneNumber);
                     SendMessageWhatsapp(dataDocument);
                     break;
+                case "audio":
+                    const dataAudio = SampleAudio(phoneNumber);
+                    SendMessageWhatsapp(dataAudio);
+                    break;
+                case "video":
+                    const dataVideo = SampleVideo(phoneNumber);
+                    SendMessageWhatsapp(dataVideo);
+                    break;
                 case "button":
                     const dataButtons = sampleButtons(phoneNumber);
                     SendMessageWhatsapp(dataButtons);

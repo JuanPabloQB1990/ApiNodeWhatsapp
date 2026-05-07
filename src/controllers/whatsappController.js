@@ -35,7 +35,7 @@ export const ReceiveMessage = (req, res) => {
 
 function GetTextMessage(messages) {
 
-    const text = ""
+    let text = ""
     const typeMessage = messages["type"];
 
     if(typeMessage === "text"){

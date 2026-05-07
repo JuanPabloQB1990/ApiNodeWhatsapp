@@ -1,3 +1,5 @@
+import { SendMessageWhatsapp } from "../services/whatsappService";
+
 export const VerifiToken = (req, res) => {
 
     try {
@@ -26,7 +28,7 @@ export const ReceiveMessage = (req, res) => {
             const messages = messageObject[0];
             const text = GetTextMessage(messages);
             console.log(JSON.stringify(text, null, 2));
-
+            SendMessageWhatsapp(`El usuario envió: ${text}`, messages["from"]);
         }
 
         

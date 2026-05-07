@@ -20,8 +20,10 @@ export const ReceiveMessage = (req, res) => {
         const entry = req.body['entry'][0];
         const changes = entry['changes'][0];
         const value = changes['value'];
-        const messages = value['messages'];
-        console.log(JSON.stringify(messages, null, 2));
+        const messageObject = value['messages'];
+        const messages = messageObject[0];
+        const text = GetTextMessage(messages);
+        console.log(JSON.stringify(text, null, 2));
         
         res.send("event received");
     } catch (error) {
@@ -29,4 +31,32 @@ export const ReceiveMessage = (req, res) => {
         
         res.send("event doesnt received");
     }
+}
+
+function GetTextMessage(messages) {
+
+    const text = ""
+    const typeMessage = messages["type"];
+
+    if(typeMessage === "text"){
+        text = messages["text"]["body"];
+    }
+    else if(typeMessage === "interactive"){
+
+        const interactiveObject = messages["interactive"];
+        const interactiveType = interactiveObject["type"];
+
+        if(interactiveType === "button_reply"){
+            text = interactiveObject["button_reply"]["title"];
+        }
+        else if(interactiveType === "list_reply"){
+            text = interactiveObject["list_reply"]["title"];
+        }else{
+            text = "unknown message type";
+        }
+    }else {
+        text = "unknown message type";
+    }
+
+    return text;
 }

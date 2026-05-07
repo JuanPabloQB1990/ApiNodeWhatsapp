@@ -41,7 +41,7 @@ export function sampleLink(numberPhone) {
   return data;
 }
 
-function SampleAudio(numberPhone){
+export function sampleAudio(numberPhone){
     const data = JSON.stringify({
         "messaging_product": "whatsapp",
         "to": numberPhone,
@@ -53,7 +53,7 @@ function SampleAudio(numberPhone){
     return data;
 }
 
-function SampleVideo(numberPhone){
+export function sampleVideo(numberPhone){
     const data = JSON.stringify({
         "messaging_product": "whatsapp",
         "to": numberPhone,
@@ -65,7 +65,7 @@ function SampleVideo(numberPhone){
     return data;
 }
 
-function SampleDocument(numberPhone){
+export function sampleDocument(numberPhone){
     const data = JSON.stringify({
         "messaging_product": "whatsapp",
         "to": numberPhone,

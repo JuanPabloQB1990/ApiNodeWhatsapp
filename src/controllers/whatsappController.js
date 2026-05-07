@@ -1,5 +1,5 @@
 import { SendMessageWhatsapp } from "../services/whatsappService.js";
-import { sampleButtons, sampleDocument, sampleImage, sampleLink, sampleList, sampleLocation, sampleText } from "../utils/sampleModels.js";
+import { sampleAudio, sampleButtons, sampleDocument, sampleImage, sampleLink, sampleList, sampleLocation, sampleText, sampleVideo } from "../utils/sampleModels.js";
 
 export const VerifiToken = (req, res) => {
 
@@ -47,11 +47,11 @@ export const ReceiveMessage = (req, res) => {
                     SendMessageWhatsapp(dataDocument);
                     break;
                 case "audio":
-                    const dataAudio = SampleAudio(phoneNumber);
+                    const dataAudio = sampleAudio(phoneNumber);
                     SendMessageWhatsapp(dataAudio);
                     break;
                 case "video":
-                    const dataVideo = SampleVideo(phoneNumber);
+                    const dataVideo = sampleVideo(phoneNumber);
                     SendMessageWhatsapp(dataVideo);
                     break;
                 case "button":
@@ -74,7 +74,6 @@ export const ReceiveMessage = (req, res) => {
             }
         }
 
-        
         res.send("event received");
     } catch (error) {
         console.log(error);

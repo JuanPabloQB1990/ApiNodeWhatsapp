@@ -116,63 +116,54 @@ export function sampleButtons(numberPhone) {
 
 export function sampleList(numberPhone) {
   const data = JSON.stringify({
-    messaging_product: "whatsapp",
-    to: numberPhone,
-    type: "interactive",
-    interactive: {
-      type: "list",
-      header: {
-        type: "text",
-        text: "Selecciona una de estas opciones",
-      },
-      body: {
-        text: "Tengo estas opciones para ti",
-      },
-      footer: {
-        text: "Selecciona una de estas opciones",
-      },
-      action: {
-        button: "ver opciones",
-        sections: [
-          {
-            title: "Compra tus productos digitales",
-            rows: [
-              {
-                id: "main-comprar",
-                title: "Comprar",
-                description: "Compra los mejores productos",
-              },
-            ],
-          },
-          {
-            title: "Vende tus productos digitales",
-            rows: [
-              {
-                id: "main-vender",
-                title: "Vender",
-                description: "Vende tus productos digitales",
-              },
-            ],
-          },
-          {
-            title: "Centro de atencion",
-            rows: [
-              {
-                id: "main-agencia",
-                title: "Agencia",
-                description: "Puedes visitar nuestra agencia",
-              },
-              {
-                id: "main-atencion",
-                title: "Centro de atencion",
-                description: "Atencion al cliente 24/7",
-              },
-            ],
-          }
-        ],
-      },
-    },
-  });
+        "messaging_product": "whatsapp",
+        "to": numberPhone,
+        "type": "interactive",
+        "interactive": {
+            "type": "list",
+            "body": {
+                "text": "✅ Tengo estas opciones"
+            },
+            "footer": {
+                "text": "Selecciona una de las opciones para poder atenderte"
+            },
+            "action": {
+                "button": "Ver opciones",
+                "sections": [
+                    {
+                        "title": "Compra y vende productos",
+                        "rows": [
+                            {
+                                "id": "main-comprar",
+                                "title": "Comprar",
+                                "description": "Compra los mejores productos para tu hogar"
+                            },
+                            {
+                                "id": "main-vender",
+                                "title": "Vender",
+                                "description": "Vende tus productos"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "📍Centro de atención",
+                        "rows": [
+                            {
+                                "id": "main-agencia",
+                                "title": "Agencia",
+                                "description": "Puedes visitar nuestra agencia."
+                            },
+                            {
+                                "id": "main-contacto",
+                                "title": "Centro de contacto",
+                                "description": "Te atenderá uno de nuestro agentes."
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    });
 
   return data;
 }

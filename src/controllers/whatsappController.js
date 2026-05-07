@@ -1,4 +1,4 @@
-import { SendMessageWhatsapp } from "../services/whatsappService";
+import { SendMessageWhatsapp } from "../services/whatsappService.js";
 
 export const VerifiToken = (req, res) => {
 

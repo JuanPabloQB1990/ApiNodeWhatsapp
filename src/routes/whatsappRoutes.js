@@ -1,10 +1,9 @@
 import express from 'express';
-import { VerifiToken, ReceiveMessage } from '../controllers/whatsappController.js';
+import { verifiToken, receiveMessage } from '../controllers/whatsappController.js';
 
 const route = express.Router();
 
-
-route.get('/', VerifiToken);
-route.post('/', ReceiveMessage);
+route.get('/', verifiToken);
+route.post('/', receiveMessage);
 
 export default route;

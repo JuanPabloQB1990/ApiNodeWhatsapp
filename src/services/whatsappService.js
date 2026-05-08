@@ -2,7 +2,7 @@ import { config } from "dotenv";
 import { sampleText } from "../utils/sampleModels.js";
 config();
 
-export async function SendMessageWhatsapp(data) {
+export async function sendMessageWhatsapp(data) {
 
     const options = {
         hostname: 'graph.facebook.com',

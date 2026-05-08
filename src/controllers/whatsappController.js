@@ -1,7 +1,7 @@
 import { SendMessageWhatsapp } from "../services/whatsappService.js";
-import { sampleAudio, sampleButtons, sampleDocument, sampleImage, sampleLink, sampleList, sampleLocation, sampleText, sampleVideo } from "../utils/sampleModels.js";
+import { processMessage } from "../utils/processMessage.js";
 
-export const VerifiToken = (req, res) => {
+export const verifiToken = (req, res) => {
 
     try {
         const VERIFY_TOKEN = process.env.VERIFY_TOKEN;
@@ -17,7 +17,7 @@ export const VerifiToken = (req, res) => {
     }
 }
 
-export const ReceiveMessage = (req, res) => {
+export const receiveMessage = (req, res) => {
     try {
         
         const entry = req.body['entry'][0];
@@ -28,49 +28,10 @@ export const ReceiveMessage = (req, res) => {
         if(typeof messageObject != "undefined") {
             const messages = messageObject[0];
             const phoneNumber = messages["from"];
-            const text = GetTextMessage(messages);
-            switch (text) {
-                case "text":
-                    const dataText = sampleText(text, phoneNumber);
-                    SendMessageWhatsapp(dataText);
-                    break;
-                case "image":
-                    const dataImage = sampleImage(phoneNumber);
-                    SendMessageWhatsapp(dataImage);
-                    break;
-                case "link":
-                    const dataLink = sampleLink(phoneNumber);
-                    SendMessageWhatsapp(dataLink);
-                    break;
-                case "document":
-                    const dataDocument = sampleDocument(phoneNumber);
-                    SendMessageWhatsapp(dataDocument);
-                    break;
-                case "audio":
-                    const dataAudio = sampleAudio(phoneNumber);
-                    SendMessageWhatsapp(dataAudio);
-                    break;
-                case "video":
-                    const dataVideo = sampleVideo(phoneNumber);
-                    SendMessageWhatsapp(dataVideo);
-                    break;
-                case "button":
-                    const dataButtons = sampleButtons(phoneNumber);
-                    SendMessageWhatsapp(dataButtons);
-                    break;
-                case "list":
-                    const dataList = sampleList(phoneNumber);
-                    SendMessageWhatsapp(dataList);
-                    break;
-                case "location":
-                    const dataLocation = sampleLocation(phoneNumber);
-                    SendMessageWhatsapp(dataLocation);
-                    break;
-                default:
-                    const dataAnotherText = sampleText("No entiendo el mensaje", phoneNumber);
-                    SendMessageWhatsapp(dataAnotherText);
-                    break;
-                    break;
+            const text = getTextMessage(messages);
+            
+            if (text != "") {
+                processMessage(text, phoneNumber);
             }
         }
 
@@ -82,7 +43,7 @@ export const ReceiveMessage = (req, res) => {
     }
 }
 
-function GetTextMessage(messages) {
+function getTextMessage(messages) {
 
     let text = ""
     const typeMessage = messages["type"];

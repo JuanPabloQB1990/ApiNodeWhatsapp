@@ -110,3 +110,20 @@ export function messageComprar(numberPhone) {
 
   return data;
 }
+
+export function messageLocation(numberPhone) {
+  const data = JSON.stringify({
+    messaging_product: "whatsapp",
+    to: numberPhone,
+    type: "location", 
+    location: 
+        { 
+            latitude: "6.285912157503673",
+            longitude: "-75.6037437819758",
+            name: "Colombia, Antioquia, Medellín",
+            address: "cll 65aa No 97 - 43"
+        } 
+  });
+
+  return data;
+}

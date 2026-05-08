@@ -1,5 +1,5 @@
 import { sendMessageWhatsapp } from "../services/whatsappService.js";
-import { messageComprar, messageList, messageText } from "./whatsappModels.js";
+import { messageComprar, messageList, messageLocation, messageText } from "./whatsappModels.js";
 
 export const processMessage = (textUser, numberPhone) => {
     textUser = textUser.toLowerCase();
@@ -22,6 +22,14 @@ export const processMessage = (textUser, numberPhone) => {
         let model = messageText("Registrate para vender tus productos", numberPhone);
         models.push(model);
         
+    }else if (textUser.includes("agencia")) {
+        let model = messageLocation(numberPhone);
+        models.push(model);
+        
+    }else if (textUser.includes("contacto")) {
+        let model = messageText("Centro de contacto: *\n3243128049*", numberPhone);
+        models.push(model);
+        
     }else if (textUser.includes("adios") || textUser.includes("adiós")  || textUser.includes("hasta luego") || textUser.includes("nos vemos")) {
         let model = messageText("¡Hasta luego! Gracias por escribirme", numberPhone);
         models.push(model);
@@ -29,9 +37,6 @@ export const processMessage = (textUser, numberPhone) => {
         let model = messageText("Lo siento, no entiendo tu mensaje. ¿Podrías reformularlo?", numberPhone);
         models.push(model);
     }
-
-
-
 
     models.forEach(model => {
         sendMessageWhatsapp(model);

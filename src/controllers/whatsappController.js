@@ -1,4 +1,3 @@
-import { SendMessageWhatsapp } from "../services/whatsappService.js";
 import { processMessage } from "../utils/processMessage.js";
 
 export const verifiToken = (req, res) => {
